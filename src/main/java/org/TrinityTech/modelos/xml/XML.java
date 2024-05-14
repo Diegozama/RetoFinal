@@ -13,9 +13,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class XML {
-    public boolean escribir(ArrayList<Cliente> lista) {
+    public boolean escribir(List<Cliente> lista) {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

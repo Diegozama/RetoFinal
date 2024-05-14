@@ -2,19 +2,19 @@ package org.TrinityTech;
 
 import org.TrinityTech.modelos.dao.GenericDAO;
 import org.TrinityTech.modelos.entidades.Cliente;
+import org.TrinityTech.modelos.xml.XML;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
-        GenericDAO daoClientes = new GenericDAO(Cliente.class);
-        daoClientes.save(new Cliente("kleyner","prueba@prueba.es"));
+        GenericDAO dao = new GenericDAO(Cliente.class);
+        List<Cliente> lista = new ArrayList<>();
+        lista = dao.findAll(Cliente.class);
+        // System.out.println(lista);
 
-        Cliente cli = (Cliente) daoClientes.findById(Cliente.class,1);
-
-        //daoClientes.delete(cli);
-
-        System.out.println("Con genericos :" + cli.getNombre());
+        new XML().escribir(lista);
     }
 }
