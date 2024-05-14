@@ -1,6 +1,8 @@
 package org.TrinityTech.modelos.xml;
 
 import org.TrinityTech.modelos.entidades.Cliente;
+import org.TrinityTech.modelos.entidades.Producto;
+import org.TrinityTech.modelos.entidades.Proveedor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -67,11 +69,110 @@ public class XML {
 
         return false;
     }
+    public boolean importarProductos(List<Producto> lista) {
+
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document documento = dBuilder.newDocument();
+
+            Element rootElement = documento.createElement("Productos");
+
+            Iterator<Producto> it = lista.iterator();
+
+            while (it.hasNext()) {
+
+                Producto p = it.next();
+                Element ProductoElement = documento.createElement("Producto");
+                ProductoElement.setAttribute("id_producto", "" + p.getIdProducto());
+
+                Element nombre = documento.createElement("Nombre");
+                nombre.appendChild(documento.createTextNode(p.getNombre()));
+                ProductoElement.appendChild(nombre);  // Nombre es hijo de producto
+
+                Element Precio = documento.createElement("Precio");
+                Precio.setTextContent("" + p.getPrecio());
+                ProductoElement.appendChild(Precio);  //  Unidades es hijo de producto
+
+                Element Stock = documento.createElement("Stock");
+                Stock.setTextContent("" + p.getStock());
+                ProductoElement.appendChild(Stock);  //  Unidades es hijo de producto
+
+                rootElement.appendChild(ProductoElement); // Producto es hijo de tienda
+
+            }
+
+
+            documento.appendChild(rootElement);
+
+            // Configurar indentación XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); // Activar la indentación
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Espacios para la indentación
+
+            DOMSource source = new DOMSource(documento);
+            StreamResult result = new StreamResult("./src/main/resources/xml/Productos.xml");
+            transformer.transform(source, result);
+
+            System.out.println("Archivo XML creado correctamente.");
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+    public boolean importarProveedores(List<Proveedor> lista) {
+
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document documento = dBuilder.newDocument();
+
+            Element rootElement = documento.createElement("Proveedores");
+
+            Iterator<Proveedor> it = lista.iterator();
+
+            while (it.hasNext()) {
+
+                Proveedor p = it.next();
+                Element ProveedorElement = documento.createElement("Proveedor");
+                ProveedorElement.setAttribute("id_proveedor", "" + p.getIdProveedores());
+
+                Element nombre = documento.createElement("Nombre");
+                nombre.appendChild(documento.createTextNode(p.getNombre()));
+                ProveedorElement.appendChild(nombre);  // Nombre es hijo de producto
+
+                rootElement.appendChild(ProveedorElement); // Producto es hijo de tienda
+
+            }
+            documento.appendChild(rootElement);
+
+            // Configurar indentación XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); // Activar la indentación
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Espacios para la indentación
+
+            DOMSource source = new DOMSource(documento);
+            StreamResult result = new StreamResult("./src/main/resources/xml/Proveedores.xml");
+            transformer.transform(source, result);
+
+            System.out.println("Archivo XML creado correctamente.");
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
-        ArrayList<Cliente> lista = new ArrayList<>();
-        lista.add(new Cliente("Juan", "prueba@prueba.com"));
 
-        new XML().importarClientes(lista);
     }
 }
