@@ -15,6 +15,6 @@ public class Main {
         lista = dao.findAll(Cliente.class);
         // System.out.println(lista);
 
-        new XML().escribir(lista);
+        new XML().importarClientes(lista);
     }
 }

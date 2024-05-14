@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class XML {
-    public boolean escribir(List<Cliente> lista) {
+    public boolean importarClientes(List<Cliente> lista) {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -72,6 +72,6 @@ public class XML {
         ArrayList<Cliente> lista = new ArrayList<>();
         lista.add(new Cliente("Juan", "prueba@prueba.com"));
 
-        new XML().escribir(lista);
+        new XML().importarClientes(lista);
     }
 }
