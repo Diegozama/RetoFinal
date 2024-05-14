@@ -1,17 +1,20 @@
 package org.TrinityTech;
 
+import org.TrinityTech.modelos.dao.GenericDAO;
+import org.TrinityTech.modelos.entidades.Cliente;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        GenericDAO daoClientes = new GenericDAO(Cliente.class);
+        daoClientes.save(new Cliente("kleyner","prueba@prueba.es"));
+
+        Cliente cli = (Cliente) daoClientes.findById(Cliente.class,1);
+
+        //daoClientes.delete(cli);
+
+        System.out.println("Con genericos :" + cli.getNombre());
     }
 }
