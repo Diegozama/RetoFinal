@@ -9,15 +9,15 @@ public class Proveedor {
 
     @Id
     @GenericGenerator(name="incrementId", strategy = "increment") @GeneratedValue(generator = "incrementId")
-    @Column(name = "id_proveedores") private int IdProveedores;
+    @Column(name = "id_proveedor") private int idProveedor;
     @Column(name = "nombre") private String nombre;
 
     // Construtores
     public Proveedor() {
     }
 
-    public Proveedor(int idProveedores, String nombre) {
-        IdProveedores = idProveedores;
+    public Proveedor(int idProveedor, String nombre) {
+        this.idProveedor = idProveedor;
         this.nombre = nombre;
     }
 
@@ -28,12 +28,12 @@ public class Proveedor {
     // Getters y setters
 
 
-    public int getIdProveedores() {
-        return IdProveedores;
+    public int getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setIdProveedores(int idProveedores) {
-        IdProveedores = idProveedores;
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getNombre() {
@@ -42,5 +42,13 @@ public class Proveedor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Proveedor{" +
+                "idProveedor=" + idProveedor +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
 }

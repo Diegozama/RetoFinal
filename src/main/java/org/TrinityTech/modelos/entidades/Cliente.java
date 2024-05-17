@@ -3,6 +3,9 @@ package org.TrinityTech.modelos.entidades;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -12,6 +15,15 @@ public class Cliente {
     @Column(name = "id_cliente") private int IdCliente;
     @Column(name = "nombre") private String nombre;
     @Column(name = "email") private String email;
+    //---------------------------------
+    /*@ManyToMany
+    @JoinTable(
+            name = "compras",
+            joinColumns = @JoinColumn(name = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_producto")
+    )
+    private List<Producto> productos = new ArrayList<>();*/
+    //---------------------------------
 
     // Constructores
 
@@ -54,5 +66,14 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "IdCliente=" + IdCliente +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

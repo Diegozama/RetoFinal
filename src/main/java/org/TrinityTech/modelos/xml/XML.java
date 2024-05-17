@@ -140,7 +140,7 @@ public class XML {
 
                 Proveedor p = it.next();
                 Element ProveedorElement = documento.createElement("Proveedor");
-                ProveedorElement.setAttribute("id_proveedor", "" + p.getIdProveedores());
+                ProveedorElement.setAttribute("id_proveedor", "" + p.getIdProveedor());
 
                 Element nombre = documento.createElement("Nombre");
                 nombre.appendChild(documento.createTextNode(p.getNombre()));

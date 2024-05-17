@@ -3,6 +3,9 @@ package org.TrinityTech.modelos.entidades;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "productos")
 public class Producto {
@@ -13,22 +16,33 @@ public class Producto {
     @Column(name = "precio") private double precio;
     @Column(name = "stock") private int stock;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_proveedor")
+    private Proveedor proveedor;
+
+
+    @ManyToMany(mappedBy = "productos")
+    private List<Cliente> clientes = new ArrayList<>();
+    //-----------------------------
+
     // Cosntructores
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, double precio, int stock) {
+    public Producto(int idProducto, String nombre, double precio, int stock, Proveedor proveedor) {
         IdProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.proveedor = proveedor;
     }
 
-    public Producto(String nombre, double precio, int stock) {
+    public Producto(String nombre, double precio, int stock, Proveedor proveedor) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.proveedor = proveedor;
     }
 
     // Setters y getters
@@ -64,5 +78,17 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "IdProducto=" + IdProducto +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", proveedor=" + proveedor +
+                ", clientes=" + clientes +
+                '}';
     }
 }
