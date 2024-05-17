@@ -8,17 +8,20 @@ import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class XML {
-    public boolean importarClientes(List<Cliente> lista) {
+    public boolean importarClientes(List<Cliente> lista, File path) {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -56,14 +59,16 @@ public class XML {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Espacios para la indentación
 
             DOMSource source = new DOMSource(documento);
-            StreamResult result = new StreamResult("./src/main/resources/xml/Clientes.xml");
+            StreamResult result = new StreamResult(path);
             transformer.transform(source, result);
 
             System.out.println("Archivo XML creado correctamente.");
 
             return true;
 
-        } catch (Exception e) {
+        } catch (TransformerException trans) {
+            System.out.println(trans.getMessage());
+        }catch (ParserConfigurationException e){
             System.out.println(e.getMessage());
         }
 
