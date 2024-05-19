@@ -67,8 +67,9 @@ public class ClienteDAO extends GenericDAO {
 
     public static void main(String[] args) {
         GenericDAO genericDAO = new GenericDAO(Cliente.class);
-        genericDAO.save(new Cliente("Roberto", "roberto@prueba.com"));
-
+        //genericDAO.save(new Cliente("Rodrigo", "rodrigo@prueba.com"));
+        //genericDAO.delete(new Cliente(14,"",""));
+        genericDAO.update(new Cliente(14,"Mario", "mario@gmail.com"));
         List<Cliente> lista = genericDAO.findAll(Cliente.class);
         //ClienteDAO clienteDAO = new ClienteDAO();
 

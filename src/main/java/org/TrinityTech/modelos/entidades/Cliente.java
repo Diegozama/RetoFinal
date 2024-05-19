@@ -3,16 +3,13 @@ package org.TrinityTech.modelos.entidades;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "clientes")
 public class Cliente {
 
     @Id
     @GenericGenerator(name="incrementId", strategy = "increment") @GeneratedValue(generator = "incrementId")
-    @Column(name = "id_cliente") private int IdCliente;
+    @Column(name = "id_cliente") private int idCliente;
     @Column(name = "nombre") private String nombre;
     @Column(name = "email") private String email;
     //---------------------------------
@@ -30,8 +27,12 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public Cliente(int idCliente, String nombre, String email) {
-        IdCliente = idCliente;
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.email = email;
     }
@@ -45,11 +46,11 @@ public class Cliente {
 
 
     public int getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
     public void setIdCliente(int idCliente) {
-        IdCliente = idCliente;
+        this.idCliente = idCliente;
     }
 
     public String getEmail() {
@@ -71,7 +72,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "IdCliente=" + IdCliente +
+                "IdCliente=" + idCliente +
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 '}';

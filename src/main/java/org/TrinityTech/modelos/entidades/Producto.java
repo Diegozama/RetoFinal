@@ -11,7 +11,7 @@ import java.util.List;
 public class Producto {
     @Id
     @GenericGenerator(name="incrementId", strategy = "increment") @GeneratedValue(generator = "incrementId")
-    @Column(name = "id_producto") private int IdProducto;
+    @Column(name = "id_producto") private int idProducto;
     @Column(name = "nombre") private String nombre;
     @Column(name = "precio") private double precio;
     @Column(name = "stock") private int stock;
@@ -30,8 +30,12 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
     public Producto(int idProducto, String nombre, double precio, int stock, Proveedor proveedor) {
-        IdProducto = idProducto;
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
@@ -49,11 +53,11 @@ public class Producto {
 
 
     public int getIdProducto() {
-        return IdProducto;
+        return idProducto;
     }
 
     public void setIdProducto(int idProducto) {
-        IdProducto = idProducto;
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -83,7 +87,7 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "IdProducto=" + IdProducto +
+                "IdProducto=" + idProducto +
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stock=" + stock +

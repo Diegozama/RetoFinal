@@ -62,7 +62,6 @@ public class XML {
             StreamResult result = new StreamResult(path);
             transformer.transform(source, result);
 
-            System.out.println("Archivo XML creado correctamente.");
 
             return true;
 
@@ -120,7 +119,6 @@ public class XML {
             StreamResult result = new StreamResult("./src/main/resources/xml/Productos.xml");
             transformer.transform(source, result);
 
-            System.out.println("Archivo XML creado correctamente.");
 
             return true;
 
@@ -166,7 +164,6 @@ public class XML {
             StreamResult result = new StreamResult("./src/main/resources/xml/Proveedores.xml");
             transformer.transform(source, result);
 
-            System.out.println("Archivo XML creado correctamente.");
 
             return true;
 
@@ -175,9 +172,5 @@ public class XML {
         }
 
         return false;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

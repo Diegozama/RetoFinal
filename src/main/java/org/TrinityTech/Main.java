@@ -9,12 +9,5 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
-        GenericDAO dao = new GenericDAO(Cliente.class);
-        List<Cliente> lista = new ArrayList<>();
-        lista = dao.findAll(Cliente.class);
-        // System.out.println(lista);
-
-       // new XML().importarClientes(lista);
     }
 }

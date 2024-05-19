@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Vista_Cliente extends JFrame {
+public class VistaCliente extends JFrame {
 
     private JTable clientesTable;
     private DefaultTableModel clientesTableModel;
@@ -15,8 +15,13 @@ public class Vista_Cliente extends JFrame {
     private JButton modificarButton;
     private JButton eliminarButton;
     private JButton exportarButton;
+    AgregarClienteDialog agregarClienteDialog;
+    EliminarClienteDialog eliminarClienteDialog;
+    ModificarClienteDialog modificarClienteDialog;
 
-    public Vista_Cliente() {
+    public VistaCliente() {
+
+
         setTitle("Gestionar clientes");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -33,8 +38,8 @@ public class Vista_Cliente extends JFrame {
         refreshButton = new JButton("Actualizar clientes");
         exportarButton = new JButton("Exportar a XML"); // Nuevo botón
 
-        clientesTableModel = new DefaultTableModel(new Object[]{"ID Cliente", "Nombre", "Email"}, 0);
         clientesTable = new JTable(clientesTableModel);
+
         JScrollPane scrollPane = new JScrollPane(clientesTable);
         panelClientes.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
@@ -48,31 +53,28 @@ public class Vista_Cliente extends JFrame {
 
         add(panelPrincipal);
 
+        agregarClienteDialog = new AgregarClienteDialog();
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AgregarClienteDialog agregarClienteDialog = new AgregarClienteDialog(Vista_Cliente.this);
+
                 agregarClienteDialog.setVisible(true);
             }
         });
 
+        modificarClienteDialog = new ModificarClienteDialog();
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedRow = clientesTable.getSelectedRow();
-                if (selectedRow != -1) {
-                    ModificarClienteDialog modificarClienteDialog = new ModificarClienteDialog(Vista_Cliente.this);
-                    modificarClienteDialog.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(Vista_Cliente.this, "Por favor, seleccione un cliente para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                modificarClienteDialog.setVisible(true);
             }
         });
 
+        eliminarClienteDialog = new EliminarClienteDialog();
         eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EliminarClienteDialog eliminarClienteDialog = new EliminarClienteDialog(Vista_Cliente.this);
+
                 eliminarClienteDialog.setVisible(true);
             }
         });
@@ -80,18 +82,38 @@ public class Vista_Cliente extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Vista_Cliente();
+    public JButton getExportarButton() {
+        return exportarButton;
     }
 
-    private class AgregarClienteDialog extends JDialog {
+    public JTable getClientesTable() {
+        return clientesTable;
+    }
+
+    public DefaultTableModel getClientesTableModel() {
+        return clientesTableModel;
+    }
+
+    public AgregarClienteDialog getAgregarClienteDialog() {
+        return agregarClienteDialog;
+    }
+
+    public EliminarClienteDialog getEliminarClienteDialog() {
+        return eliminarClienteDialog;
+    }
+
+    public ModificarClienteDialog getModificarClienteDialog() {
+        return modificarClienteDialog;
+    }
+
+    public class AgregarClienteDialog extends JDialog {
         private JTextField nombreField, emailField;
         private JButton agregarButton;
 
-        public AgregarClienteDialog(Frame owner) {
-            super(owner, "Agregar Cliente", true);
+        public AgregarClienteDialog() {
+
             setSize(300, 200);
-            setLocationRelativeTo(owner);
+            setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(3, 2));
             JLabel nombreLabel = new JLabel("Nombre:");
@@ -109,30 +131,29 @@ public class Vista_Cliente extends JFrame {
 
             add(panelFormulario);
 
-            agregarButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String nombre = nombreField.getText();
-                    String email = emailField.getText();
+        }
 
-                    // Aquí deberías guardar el cliente en tu base de datos o lista
-                    // Luego actualiza la tabla
-                    clientesTableModel.addRow(new Object[]{"ID", nombre, email});
+        public JTextField getNombreField() {
+            return nombreField;
+        }
 
-                    dispose();
-                }
-            });
+        public JTextField getEmailField() {
+            return emailField;
+        }
+
+        public JButton getAgregarButton() {
+            return agregarButton;
         }
     }
 
-    private class ModificarClienteDialog extends JDialog {
+    public class ModificarClienteDialog extends JDialog {
         private JTextField idField, nombreField, emailField;
         private JButton modificarButton;
 
-        public ModificarClienteDialog(Frame owner) {
-            super(owner, "Modificar Cliente", true);
+        public ModificarClienteDialog() {
+
             setSize(300, 200);
-            setLocationRelativeTo(owner);
+            setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(4, 2));
             JLabel idLabel = new JLabel("ID del Cliente:");
@@ -153,29 +174,40 @@ public class Vista_Cliente extends JFrame {
             panelFormulario.add(modificarButton);
 
             add(panelFormulario);
+        }
 
-            modificarButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String idCliente = idField.getText();
-                    String nombre = nombreField.getText();
-                    String email = emailField.getText();
+        public JTextField getIdField() {
+            return idField;
+        }
 
+        public JTextField getNombreField() {
+            return nombreField;
+        }
 
-                    dispose();
-                }
-            });
+        public JTextField getEmailField() {
+            return emailField;
+        }
+
+        public JButton getModificarButton() {
+            return modificarButton;
         }
     }
 
-    private class EliminarClienteDialog extends JDialog {
+    public class EliminarClienteDialog extends JDialog {
         private JTextField idField;
         private JButton eliminarButton;
 
-        public EliminarClienteDialog(Frame owner) {
-            super(owner, "Eliminar Cliente", true);
+        public JTextField getIdField() {
+            return idField;
+        }
+
+        public JButton getEliminarButton() {
+            return eliminarButton;
+        }
+
+        public EliminarClienteDialog() {
             setSize(300, 150);
-            setLocationRelativeTo(owner);
+            setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(2, 2));
             JLabel idLabel = new JLabel("ID del Cliente a Eliminar:");
@@ -189,16 +221,11 @@ public class Vista_Cliente extends JFrame {
 
             add(panelFormulario);
 
-            eliminarButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int confirm = JOptionPane.showConfirmDialog(EliminarClienteDialog.this, "¿Está seguro de que desea eliminar este cliente?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.YES_OPTION) {
 
-                        dispose();
-                    }
-                }
-            });
         }
+    }
+
+    public static void main(String[] args) {
+        new VistaCliente();
     }
 }
