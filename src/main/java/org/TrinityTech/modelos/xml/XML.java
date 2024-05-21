@@ -20,7 +20,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
+/**
+ * Clase con métodos relacionadas con exportación
+ * datos a un formato XML
+ */
 public class XML {
+
+    /**
+     * Método que exportar una lista de la clase Cliente en formato XML a una ruta
+     * @param lista Lista que contiene elementos de la clase Cliente
+     * @param path Ruta donde se guardara el archivo XML
+     * @return Devuelve un booleano. Si se guardo correctamente devuelve true, si no delvolverá false
+     */
     public boolean importarClientes(List<Cliente> lista, File path) {
 
         try {

@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Vista_Cliente extends JFrame {
+public class VistaCliente extends JFrame {
 
     private JTable clientesTable;
     private DefaultTableModel clientesTableModel;
@@ -19,7 +19,7 @@ public class Vista_Cliente extends JFrame {
     EliminarClienteDialog eliminarClienteDialog;
     ModificarClienteDialog modificarClienteDialog;
 
-    public Vista_Cliente() {
+    public VistaCliente() {
 
 
         setTitle("Gestionar clientes");
@@ -226,6 +226,6 @@ public class Vista_Cliente extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Vista_Productos();
+        new VistaCliente();
     }
 }

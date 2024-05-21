@@ -1,7 +1,7 @@
 package org.TrinityTech.controladores;
 
 
-import org.TrinityTech.interfaces.Vista_Productos;
+import org.TrinityTech.interfaces.VistaCliente;
 import org.TrinityTech.modelos.dao.ClienteDAO;
 import org.TrinityTech.modelos.dao.GenericDAO;
 import org.TrinityTech.modelos.entidades.Cliente;
@@ -16,13 +16,13 @@ import java.util.List;
 
 public class ClienteControlador {
 
-    private Vista_Productos vistaCliente;
+    private VistaCliente vistaCliente;
     private GenericDAO genericDAO;
     private ClienteDAO clienteDAO;
     private XML xml;
 
     public ClienteControlador(){
-         this.vistaCliente = new Vista_Productos();
+         this.vistaCliente = new VistaCliente();
          this.genericDAO = new GenericDAO(Cliente.class);
          this.clienteDAO = new ClienteDAO();
          this.xml = new XML();
@@ -139,7 +139,7 @@ public class ClienteControlador {
 
         String columnas[] = {"ID Cliente", "Nombre", "Email"};
         DefaultTableModel model = new DefaultTableModel(matriz,columnas);
-        vistaCliente.getProductosTable().setModel(model);
+        vistaCliente.getClientesTable().setModel(model);
 
     }
 
