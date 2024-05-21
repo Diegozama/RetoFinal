@@ -78,7 +78,7 @@ public class VistaProveedor extends JFrame{
             }
         });
 
-        setVisible(true);
+        //setVisible(true);
     }
 
     public JButton getExportarButton() {
@@ -93,6 +93,17 @@ public class VistaProveedor extends JFrame{
         return proveedoresTableModel;
     }
 
+    public AgregarProveedorDialog getAgregarProveedorDialog() {
+        return agregarProveedorDialog;
+    }
+
+    public ModificarProveedorDialog getModificarProveedorDialog() {
+        return modificarProveedorDialog;
+    }
+
+    public EliminarProveedorDialog getEliminarProveedorDialog() {
+        return eliminarProveedorDialog;
+    }
 
     public class AgregarProveedorDialog extends JDialog {
         private JTextField nombreField;

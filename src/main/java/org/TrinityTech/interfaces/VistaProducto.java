@@ -1,5 +1,7 @@
 package org.TrinityTech.interfaces;
 
+import org.TrinityTech.modelos.entidades.Proveedor;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class VistaProducto extends JFrame{
 
-    private JTable clientesTable;
+    private JTable productoTable;
     private DefaultTableModel clientesTableModel;
     private JButton agregarButton;
     private JButton refreshButton;
@@ -37,9 +39,9 @@ public class VistaProducto extends JFrame{
         eliminarButton = new JButton("Eliminar producto");
         exportarButton = new JButton("Exportar a XML");
 
-        clientesTable = new JTable(clientesTableModel);
+        productoTable = new JTable(clientesTableModel);
 
-        JScrollPane scrollPane = new JScrollPane(clientesTable);
+        JScrollPane scrollPane = new JScrollPane(productoTable);
         panelClientes.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(agregarButton);
@@ -78,15 +80,15 @@ public class VistaProducto extends JFrame{
             }
         });
 
-        setVisible(true);
+        //setVisible(true);
     }
 
     public JButton getExportarButton() {
         return exportarButton;
     }
 
-    public JTable getClientesTable() {
-        return clientesTable;
+    public JTable getProductoTable() {
+        return productoTable;
     }
 
     public DefaultTableModel getClientesTableModel() {
@@ -105,22 +107,27 @@ public class VistaProducto extends JFrame{
         return agregarClienteDialog;
     }
 
+
+
     public class AgregarProductoDialog extends JDialog {
         private JTextField nombreField, precioField,stockField;
         private JButton agregarButton;
+        private JComboBox<Proveedor> proveedorJComboBox;
 
         public AgregarProductoDialog() {
 
             setSize(300, 200);
             setLocationRelativeTo(null);
 
-            JPanel panelFormulario = new JPanel(new GridLayout(4, 2));
+            JPanel panelFormulario = new JPanel(new GridLayout(5, 2));
             JLabel nombreLabel = new JLabel("Nombre:");
             nombreField = new JTextField(20);
             JLabel precioLabel = new JLabel("Precio:");
             precioField = new JTextField(20);
             JLabel stockLabel=new JLabel("Stock");
             stockField=new JTextField(20);
+            JLabel proveedorLabel=new JLabel("Proveedor");
+            proveedorJComboBox = new JComboBox<>();
             agregarButton = new JButton("Agregar");
 
             panelFormulario.add(nombreLabel);
@@ -129,6 +136,8 @@ public class VistaProducto extends JFrame{
             panelFormulario.add(precioField);
             panelFormulario.add(stockLabel);
             panelFormulario.add(stockField);
+            panelFormulario.add(proveedorLabel);
+            panelFormulario.add(proveedorJComboBox);
             panelFormulario.add(new JLabel());
             panelFormulario.add(agregarButton);
 
@@ -149,18 +158,23 @@ public class VistaProducto extends JFrame{
         public JButton getAgregarButton() {
             return agregarButton;
         }
+
+        public JComboBox<Proveedor> getProveedorJComboBox() {
+            return proveedorJComboBox;
+        }
     }
 
     public class ModificarProductoDialog extends JDialog {
         private JTextField idField, nombreField, precioField,stockField;
         private JButton modificarButton;
+        private JComboBox<Proveedor> proveedorJComboBox;
 
         public ModificarProductoDialog() {
 
             setSize(300, 200);
             setLocationRelativeTo(null);
 
-            JPanel panelFormulario = new JPanel(new GridLayout(5, 2));
+            JPanel panelFormulario = new JPanel(new GridLayout(6, 2));
             JLabel idLabel = new JLabel("ID del Producto:");
             idField = new JTextField(20);
             JLabel nombreLabel = new JLabel("Nuevo Nombre:");
@@ -169,6 +183,8 @@ public class VistaProducto extends JFrame{
             precioField = new JTextField(20);
             JLabel stockLabel= new JLabel("Nuevo Stock");
             stockField=new JTextField(20);
+            JLabel proveedorLabel=new JLabel("Proveedor");
+            proveedorJComboBox = new JComboBox<>();
             modificarButton = new JButton("Modificar");
 
             panelFormulario.add(idLabel);
@@ -179,6 +195,8 @@ public class VistaProducto extends JFrame{
             panelFormulario.add(precioField);
             panelFormulario.add(stockLabel);
             panelFormulario.add(stockField);
+            panelFormulario.add(proveedorLabel);
+            panelFormulario.add(proveedorJComboBox);
             panelFormulario.add(new JLabel());
             panelFormulario.add(modificarButton);
 
@@ -199,6 +217,10 @@ public class VistaProducto extends JFrame{
 
         public JTextField getStockField() {
             return stockField;
+        }
+
+        public JComboBox<Proveedor> getProveedorJComboBox() {
+            return proveedorJComboBox;
         }
 
         public JButton getModificarButton() {

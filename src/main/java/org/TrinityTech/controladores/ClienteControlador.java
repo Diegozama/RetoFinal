@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
+
+/**
+ * Controlador del maoldeo y la interfaz de cliente
+ */
 public class ClienteControlador {
 
     private VistaCliente vistaCliente;
@@ -21,8 +25,8 @@ public class ClienteControlador {
     private ClienteDAO clienteDAO;
     private XML xml;
 
-    public ClienteControlador(){
-         this.vistaCliente = new VistaCliente();
+    public ClienteControlador(VistaCliente vistaCliente){
+         this.vistaCliente = vistaCliente;
          this.genericDAO = new GenericDAO(Cliente.class);
          this.clienteDAO = new ClienteDAO();
          this.xml = new XML();
@@ -71,7 +75,7 @@ public class ClienteControlador {
         });
 
 
-         //Evento de boton exoprtar
+         //Evento de boton exportar
          vistaCliente.getExportarButton().addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -144,6 +148,6 @@ public class ClienteControlador {
     }
 
     public static void main(String[] args) {
-        new ClienteControlador();
+        new ClienteControlador(new VistaCliente());
     }
 }

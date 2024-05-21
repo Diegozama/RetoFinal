@@ -34,7 +34,7 @@ public class ProveedorDAO extends GenericDAO{
         genericDAO.save(new Proveedor("chino"));*/
 
         ProveedorDAO proveedorDAO = new ProveedorDAO();
-        List<Proveedor> lista = proveedorDAO.findByNombre("chino");
+        List<Proveedor> lista = proveedorDAO.findByNombre("Elon Musk");
         System.out.println(lista);
     }
 }

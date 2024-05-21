@@ -1,5 +1,6 @@
 package org.TrinityTech.modelos.dao;
 
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
@@ -74,14 +75,26 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
+    public List<Producto> getProductosDeCliente (int clienteId) {
+
+        Session session = sessionFactory.openSession();
+        TypedQuery<Producto> query
+                = session.createQuery(
+                "SELECT c.productos FROM Cliente c WHERE c.id_cliente = :clienteId ", Producto.class);
+
+        query.setParameter("clienteId", clienteId);
+        return query.getResultList();
+    }
 
 
     public static void main(String[] args) {
-        GenericDAO genericDAO = new GenericDAO(Proveedor.class);
-        Proveedor proveedor = (Proveedor)genericDAO.findById(Proveedor.class,1);
+        /*GenericDAO genericDAO = new GenericDAO(Proveedor.class);
+        Proveedor proveedor = (Proveedor)genericDAO.findById(Proveedor.class,1);*/
 
         ProductoDAO productoDAO = new ProductoDAO();
-        List<Producto> list = productoDAO.findByProveedor(proveedor);
+        //List<Producto> list = productoDAO.findByProveedor(proveedor);
+
+        List<Producto> list = productoDAO.getProductosDeCliente(new Cliente(1).getIdCliente());
 
         System.out.println(list);
     }

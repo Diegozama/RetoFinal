@@ -3,6 +3,14 @@ package org.TrinityTech.modelos.entidades;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Clase que servirá para mapear los datos de los clientes
+ * en la base de datos
+ */
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -12,15 +20,15 @@ public class Cliente {
     @Column(name = "id_cliente") private int idCliente;
     @Column(name = "nombre") private String nombre;
     @Column(name = "email") private String email;
-    //---------------------------------
-    /*@ManyToMany
+
+    @ManyToMany
     @JoinTable(
             name = "compras",
             joinColumns = @JoinColumn(name = "id_cliente"),
             inverseJoinColumns = @JoinColumn(name = "id_producto")
     )
-    private List<Producto> productos = new ArrayList<>();*/
-    //---------------------------------
+    private List<Producto> productos = new ArrayList<>();
+
 
     // Constructores
 
@@ -40,6 +48,23 @@ public class Cliente {
     public Cliente(String nombre, String email) {
         this.nombre = nombre;
         this.email = email;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public void addProducto(Producto producto) {
+        //producto.addCliente(this); // En el producto añadimos a su lista este Cliente
+        productos.add(producto);
+    }
+
+    public void removeProducto(Producto producto) {
+        productos.remove(producto);
     }
 
     // Getters y setters

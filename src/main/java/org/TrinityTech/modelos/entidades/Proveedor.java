@@ -3,6 +3,13 @@ package org.TrinityTech.modelos.entidades;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
+
+/**
+ * Clase que servirá para mapear los datos de los proveedores
+ * en la base de datos
+ */
 @Entity
 @Table(name = "proveedores")
 public class Proveedor {
@@ -11,6 +18,9 @@ public class Proveedor {
     @GenericGenerator(name="incrementId", strategy = "increment") @GeneratedValue(generator = "incrementId")
     @Column(name = "id_proveedor") private int idProveedor;
     @Column(name = "nombre") private String nombre;
+
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Producto> productos;
 
     // Construtores
     public Proveedor() {
@@ -46,6 +56,14 @@ public class Proveedor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 
     @Override

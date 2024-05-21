@@ -6,6 +6,10 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que servirá para mapear los datos de los productos
+ * en la base de datos
+ */
 @Entity
 @Table(name = "productos")
 public class Producto {
@@ -20,10 +24,8 @@ public class Producto {
     @JoinColumn(name = "id_proveedor")
     private Proveedor proveedor;
 
-
     @ManyToMany(mappedBy = "productos")
     private List<Cliente> clientes = new ArrayList<>();
-    //-----------------------------
 
     // Cosntructores
 
@@ -49,8 +51,16 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
-    // Setters y getters
+    public void addCliente(Cliente cliente) {
+        //producto.addCliente(this); // En el producto añadimos a su lista este Cliente
+        clientes.add(cliente);
+    }
 
+    public void removeCliente(Cliente cliente) {
+        clientes.remove(cliente);
+    }
+
+    // Setters y getters
 
     public int getIdProducto() {
         return idProducto;
@@ -82,6 +92,10 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
     }
 
     @Override

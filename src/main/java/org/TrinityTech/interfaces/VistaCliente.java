@@ -79,7 +79,7 @@ public class VistaCliente extends JFrame {
             }
         });
 
-        setVisible(true);
+        //setVisible(true);
     }
 
     public JButton getExportarButton() {
