@@ -85,7 +85,13 @@ public class XML {
 
         return false;
     }
-    public boolean importarProductos(List<Producto> lista) {
+    /**
+     * Método que exportar una lista de la clase Producto en formato XML a una ruta
+     * @param lista Lista que contiene elementos de la clase Producto
+     * @param path Ruta donde se guardara el archivo XML
+     * @return Devuelve un booleano. Si se guardo correctamente devuelve true, si no delvolverá false
+     */
+    public boolean importarProductos(List<Producto> lista, File path) {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -128,7 +134,7 @@ public class XML {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Espacios para la indentación
 
             DOMSource source = new DOMSource(documento);
-            StreamResult result = new StreamResult("./src/main/resources/xml/Productos.xml");
+            StreamResult result = new StreamResult(path);
             transformer.transform(source, result);
 
 
@@ -140,7 +146,13 @@ public class XML {
 
         return false;
     }
-    public boolean importarProveedores(List<Proveedor> lista) {
+    /**
+     * Método que exportar una lista de la clase Proveedor en formato XML a una ruta
+     * @param lista Lista que contiene elementos de la clase Proveedor.
+     * @param path Ruta donde se guardara el archivo XML
+     * @return Devuelve un booleano. Si se guardo correctamente devuelve true, si no delvolverá false
+     */
+    public boolean importarProveedores(List<Proveedor> lista, File path) {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -173,7 +185,7 @@ public class XML {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Espacios para la indentación
 
             DOMSource source = new DOMSource(documento);
-            StreamResult result = new StreamResult("./src/main/resources/xml/Proveedores.xml");
+            StreamResult result = new StreamResult(path);
             transformer.transform(source, result);
 
 
