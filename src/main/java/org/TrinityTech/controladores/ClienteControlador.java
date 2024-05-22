@@ -27,7 +27,7 @@ public class ClienteControlador {
 
     public ClienteControlador(VistaCliente vistaCliente){
          this.vistaCliente = vistaCliente;
-         this.genericDAO = new GenericDAO(Cliente.class);
+         this.genericDAO = new GenericDAO();
          this.clienteDAO = new ClienteDAO();
          this.xml = new XML();
 
@@ -113,7 +113,7 @@ public class ClienteControlador {
                 file = new File(filePath + ".xml"); // Agregar extensión .txt si no está presente
             }
 
-            GenericDAO genericDAO = new GenericDAO(Cliente.class);
+            GenericDAO genericDAO = new GenericDAO();
             List<Cliente> lista = genericDAO.findAll(Cliente.class);
 
             correcto = new XML().importarClientes(lista, file);
@@ -148,6 +148,10 @@ public class ClienteControlador {
     }
 
     public static void main(String[] args) {
-        new ClienteControlador(new VistaCliente());
+        VistaCliente v = new VistaCliente();
+
+        new ClienteControlador(v);
+
+        v.setVisible(true);
     }
 }

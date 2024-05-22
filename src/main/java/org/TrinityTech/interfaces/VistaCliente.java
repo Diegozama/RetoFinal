@@ -111,7 +111,7 @@ public class VistaCliente extends JFrame {
         private JButton agregarButton;
 
         public AgregarClienteDialog() {
-
+            setTitle("Agregar cliente");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -151,7 +151,7 @@ public class VistaCliente extends JFrame {
         private JButton modificarButton;
 
         public ModificarClienteDialog() {
-
+            setTitle("Modificar cliente");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -206,6 +206,7 @@ public class VistaCliente extends JFrame {
         }
 
         public EliminarClienteDialog() {
+            setTitle("Eliminar cliente");
             setSize(300, 150);
             setLocationRelativeTo(null);
 

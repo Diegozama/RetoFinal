@@ -12,7 +12,7 @@ import java.util.List;
 public class ProveedorDAO extends GenericDAO{
 
     public ProveedorDAO(){
-        super(Proveedor.class);
+        super();
     }
 
     public List<Proveedor> findByNombre(String nombre) {
@@ -29,12 +29,16 @@ public class ProveedorDAO extends GenericDAO{
         return proveedors;
     }
 
+
+
     public static void main(String[] args) {
         /*GenericDAO genericDAO = new GenericDAO(Proveedor.class);
         genericDAO.save(new Proveedor("chino"));*/
 
-        ProveedorDAO proveedorDAO = new ProveedorDAO();
+
+        /*ProveedorDAO proveedorDAO = new ProveedorDAO();
+        List<Proveedor> proveedors = proveedorDAO.findAll(Proveedor.class);
         List<Proveedor> lista = proveedorDAO.findByNombre("Elon Musk");
-        System.out.println(lista);
+        System.out.println(lista);*/
     }
 }

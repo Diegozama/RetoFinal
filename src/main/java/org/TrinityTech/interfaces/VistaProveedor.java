@@ -110,7 +110,7 @@ public class VistaProveedor extends JFrame{
         private JButton agregarButton;
 
         public AgregarProveedorDialog() {
-
+            setTitle("Agregar proveedor");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -143,7 +143,7 @@ public class VistaProveedor extends JFrame{
         private JButton modificarButton;
 
         public ModificarProveedorDialog() {
-
+            setTitle("Modificar proveedor");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -190,6 +190,7 @@ public class VistaProveedor extends JFrame{
         }
 
         public EliminarProveedorDialog() {
+            setTitle("Eliminar proveedor");
             setSize(300, 150);
             setLocationRelativeTo(null);
 

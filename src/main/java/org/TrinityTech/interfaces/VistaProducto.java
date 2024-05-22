@@ -17,7 +17,7 @@ public class VistaProducto extends JFrame{
     private JButton modificarButton;
     private JButton eliminarButton;
     private JButton exportarButton;
-    private AgregarProductoDialog agregarClienteDialog;
+    private AgregarProductoDialog agregarProductoDialogDialog;
     private ModificarProductoDialog modificarProductoDialog;
     private EliminarProductoDialog eliminarProductoDialog;
 
@@ -54,12 +54,12 @@ public class VistaProducto extends JFrame{
 
         add(panelPrincipal);
 
-        agregarClienteDialog = new AgregarProductoDialog();
+        agregarProductoDialogDialog = new AgregarProductoDialog();
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                agregarClienteDialog.setVisible(true);
+                agregarProductoDialogDialog.setVisible(true);
             }
         });
 
@@ -103,11 +103,9 @@ public class VistaProducto extends JFrame{
         return modificarProductoDialog;
     }
 
-    public AgregarProductoDialog getAgregarClienteDialog() {
-        return agregarClienteDialog;
+    public AgregarProductoDialog getAgregarProductoDialog() {
+        return agregarProductoDialogDialog;
     }
-
-
 
     public class AgregarProductoDialog extends JDialog {
         private JTextField nombreField, precioField,stockField;
@@ -115,7 +113,7 @@ public class VistaProducto extends JFrame{
         private JComboBox<Proveedor> proveedorJComboBox;
 
         public AgregarProductoDialog() {
-
+            setTitle("Agregar producto");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -170,7 +168,7 @@ public class VistaProducto extends JFrame{
         private JComboBox<Proveedor> proveedorJComboBox;
 
         public ModificarProductoDialog() {
-
+            setTitle("Modificar producto");
             setSize(300, 200);
             setLocationRelativeTo(null);
 
@@ -241,6 +239,7 @@ public class VistaProducto extends JFrame{
         }
 
         public EliminarProductoDialog() {
+            setTitle("Eliminar Producto");
             setSize(300, 150);
             setLocationRelativeTo(null);
 

@@ -14,7 +14,7 @@ import java.util.List;
 public class ClienteDAO extends GenericDAO {
 
     public ClienteDAO(){
-        super(Cliente.class);
+        super();
     }
 
 
@@ -46,41 +46,22 @@ public class ClienteDAO extends GenericDAO {
         return clientes;
     }
 
-    public List<Producto> findProductosByCliente(Cliente cliente) {
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Producto> criteria = builder.createQuery(Producto.class);
-        Root<Cliente> rootCliente = criteria.from(Cliente.class);
 
-        // Join para obtener los productos asociados al cliente
-        Join<Cliente, Producto> joinProducto = rootCliente.join("productos");
-
-        // Filtrar por cliente
-        criteria.select(joinProducto).where(builder.equal(rootCliente, cliente));
-
-        List<Producto> productos = session.createQuery(criteria).getResultList();
-
-        session.close();
-
-        return productos;
-    }
 
     public static void main(String[] args) {
-        GenericDAO genericDAO = new GenericDAO(Cliente.class);
+        //GenericDAO genericDAO = new GenericDAO();
         //genericDAO.save(new Cliente("Rodrigo", "rodrigo@prueba.com"));
         //genericDAO.delete(new Cliente(14,"",""));
         //genericDAO.update(new Cliente(14,"Mario", "mario@gmail.com"));
-        List<Cliente> lista = genericDAO.findAll(Cliente.class);
+        //List<Cliente> lista = genericDAO.findAll(Cliente.class);
         //ClienteDAO clienteDAO = new ClienteDAO();
 
         //List<Cliente> lista = clienteDAO.findByNombre("prueba");
-        System.out.println(lista);
+       /* System.out.println(lista);*/
 
         ClienteDAO clienteDAO = new ClienteDAO();
 
-        List<Producto> productos = clienteDAO.findProductosByCliente(new Cliente(1));
 
-        System.out.println(productos);
         /*GenericDAO genericDAO = new ClienteDAO();
         Cliente cliente = (Cliente) genericDAO.findById(Cliente.class, 2);
 

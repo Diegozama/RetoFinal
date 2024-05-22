@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductoDAO extends GenericDAO {
 
     public ProductoDAO(){
-        super(Producto.class);
+        super();
     }
 
 
@@ -75,26 +75,33 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
-    public List<Producto> getProductosDeCliente (int clienteId) {
-
+    public List<Producto> findProductosByCliente(Cliente cliente) {
         Session session = sessionFactory.openSession();
-        TypedQuery<Producto> query
-                = session.createQuery(
-                "SELECT c.productos FROM Cliente c WHERE c.id_cliente = :clienteId ", Producto.class);
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Producto> criteria = builder.createQuery(Producto.class);
+        Root<Cliente> rootCliente = criteria.from(Cliente.class);
 
-        query.setParameter("clienteId", clienteId);
-        return query.getResultList();
+        // Join para obtener los productos asociados al cliente
+        Join<Cliente, Producto> joinProducto = rootCliente.join("productos");
+
+        // Filtrar por cliente
+        criteria.select(joinProducto).where(builder.equal(rootCliente, cliente));
+
+        List<Producto> productos = session.createQuery(criteria).getResultList();
+
+        session.close();
+
+        return productos;
     }
 
 
     public static void main(String[] args) {
-        /*GenericDAO genericDAO = new GenericDAO(Proveedor.class);
-        Proveedor proveedor = (Proveedor)genericDAO.findById(Proveedor.class,1);*/
 
         ProductoDAO productoDAO = new ProductoDAO();
-        //List<Producto> list = productoDAO.findByProveedor(proveedor);
 
-        List<Producto> list = productoDAO.getProductosDeCliente(new Cliente(1).getIdCliente());
+        //List<Producto> list = productoDAO.getProductosDeCliente(new Cliente(1).getIdCliente());
+        List<Producto> list = productoDAO.findProductosByCliente(new Cliente(1));
+        //List<Producto> list = productoDAO.findByProveedor(new Proveedor(1));
 
         System.out.println(list);
     }

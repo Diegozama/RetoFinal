@@ -68,9 +68,6 @@ public class Proveedor {
 
     @Override
     public String toString() {
-        return "Proveedor{" +
-                "idProveedor=" + idProveedor +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return  idProveedor +" - " + nombre;
     }
 }

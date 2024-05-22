@@ -24,7 +24,7 @@ public class ProveedorControlador {
 
     public ProveedorControlador( VistaProveedor vistaProveedor){
         this.vistaProveedor = vistaProveedor;
-        genericDAO = new GenericDAO(Proveedor.class);
+        genericDAO = new GenericDAO();
         proveedorDAO = new ProveedorDAO();
         xml = new XML();
 
@@ -96,7 +96,7 @@ public class ProveedorControlador {
                 file = new File(filePath + ".xml"); // Agregar extensión .txt si no está presente
             }
 
-            GenericDAO genericDAO = new GenericDAO(Proveedor.class);
+            GenericDAO genericDAO = new GenericDAO();
             List<Proveedor> lista = genericDAO.findAll(Proveedor.class);
 
             correcto = new XML().importarProveedores(lista, file);
@@ -130,6 +130,9 @@ public class ProveedorControlador {
     }
 
     public static void main(String[] args) {
-        new ProductoControlador(new VistaProducto());
+        VistaProveedor v = new VistaProveedor();
+        new ProveedorControlador(v);
+
+        v.setVisible(true);
     }
 }

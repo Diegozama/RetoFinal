@@ -2,6 +2,9 @@ package org.TrinityTech.modelos.dao;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import org.TrinityTech.modelos.entidades.Cliente;
+import org.TrinityTech.modelos.entidades.Producto;
+import org.TrinityTech.modelos.entidades.Proveedor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,14 +22,15 @@ public class GenericDAO {
     Configuration configuration;
 
     /**
-     * Constructor de GenericDAO
-     * @param t Clase del elemento generico para realizar
-     *          las operaciones CRUD
+     * Constructor de GenericDAO para genenra las
+     * operaciones CRUD
      */
-    public GenericDAO(Class t){
+    public GenericDAO(){
         configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
-        configuration.addAnnotatedClass(t);
+        configuration.addAnnotatedClass(Cliente.class);
+        configuration.addAnnotatedClass(Producto.class);
+        configuration.addAnnotatedClass(Proveedor.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 
