@@ -44,7 +44,6 @@ public class ProductoControlador {
                 String nombre = vistaProducto.getAgregarProductoDialog().getNombreField().getText();
                 Double precio = Double.parseDouble(vistaProducto.getAgregarProductoDialog().getPrecioField().getText());
                 int stock = Integer.parseInt(vistaProducto.getAgregarProductoDialog().getStockField().getText());
-
                 Proveedor proveedor = (Proveedor) vistaProducto.getAgregarProductoDialog().getProveedorJComboBox().getSelectedItem();
                 genericDAO.save(new Producto(nombre,precio,stock,proveedor));
 
@@ -61,12 +60,14 @@ public class ProductoControlador {
                 String nombre = vistaProducto.getModificarProductoDialog().getNombreField().getText();
                 Double precio = Double.parseDouble(vistaProducto.getModificarProductoDialog().getPrecioField().getText());
                 int stock = Integer.parseInt(vistaProducto.getModificarProductoDialog().getStockField().getText());
-                DefaultComboBoxModel<Proveedor> defaultComboBoxModel = new DefaultComboBoxModel<>(proveedores.toArray(new Proveedor[0]));
-                vistaProducto.getModificarProductoDialog().getProveedorJComboBox().setModel(defaultComboBoxModel);
                 Proveedor proveedor = (Proveedor) vistaProducto.getModificarProductoDialog().getProveedorJComboBox().getSelectedItem();
-                genericDAO.update(new Producto(nombre,precio,stock,proveedor));
+                Producto producto = (Producto) genericDAO.findById(Producto.class,id);
+                producto.setNombre(nombre);
+                producto.setPrecio(precio);
+                producto.setStock(stock);
+                producto.setProveedor(proveedor);
+                genericDAO.update(producto);
 
-                actualizarJcomoBox();
                 mostrarProductos();
             }
         });

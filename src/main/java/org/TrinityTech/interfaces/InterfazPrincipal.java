@@ -8,6 +8,8 @@ import org.TrinityTech.modelos.entidades.Cliente;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.net.URL;
 
 public class InterfazPrincipal extends JFrame {
 
@@ -15,6 +17,14 @@ public class InterfazPrincipal extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        // Cargar la imagen del ícono
+        URL iconURL = getClass().getClassLoader().getResource("logo/market.jpg");
+        if (iconURL != null) {
+            Image icon = Toolkit.getDefaultToolkit().getImage(iconURL);
+            // Establecer el ícono en el JFrame
+            setIconImage(icon);
+        }
 
         JTabbedPane tabbedPane = new JTabbedPane();
 

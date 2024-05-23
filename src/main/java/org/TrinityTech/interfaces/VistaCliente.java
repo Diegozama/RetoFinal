@@ -40,6 +40,7 @@ public class VistaCliente extends JFrame {
 
         clientesTable = new JTable(clientesTableModel);
 
+
         JScrollPane scrollPane = new JScrollPane(clientesTable);
         panelClientes.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();

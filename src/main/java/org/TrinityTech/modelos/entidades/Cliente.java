@@ -50,7 +50,7 @@ public class Cliente {
         this.email = email;
     }
 
-    /*public List<Producto> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
@@ -65,7 +65,7 @@ public class Cliente {
 
     public void removeProducto(Producto producto) {
         productos.remove(producto);
-    }*/
+    }
 
     // Getters y setters
 
