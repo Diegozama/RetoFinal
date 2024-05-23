@@ -28,6 +28,8 @@ public class VistaCliente extends JFrame {
         setSize(600, 400);
         setLocationRelativeTo(null);
 
+        getContentPane().setBackground(Color.GRAY);
+
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(new EmptyBorder(20,20,20,20));
@@ -234,6 +236,6 @@ public class VistaCliente extends JFrame {
     }
 
     public static void main(String[] args) {
-        new VistaCliente();
+        new VistaCliente().setVisible(true);
     }
 }

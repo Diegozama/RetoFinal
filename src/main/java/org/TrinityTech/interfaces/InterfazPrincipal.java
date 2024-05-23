@@ -19,9 +19,10 @@ public class InterfazPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        getContentPane().setBackground(Color.GRAY);
+
         // Cargar la imagen del ícono
         URL iconURL = getClass().getClassLoader().getResource("logos/market2.jpg");
-        System.out.println(iconURL);
         if (iconURL != null) {
             Image icon = Toolkit.getDefaultToolkit().getImage(iconURL);
             // Establecer el ícono en el JFrame

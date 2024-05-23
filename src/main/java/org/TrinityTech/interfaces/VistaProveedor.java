@@ -28,6 +28,8 @@ public class VistaProveedor extends JFrame{
         setSize(700, 400);
         setLocationRelativeTo(null);
 
+        getContentPane().setBackground(Color.GRAY);
+
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(new EmptyBorder(20,20,20,20));
