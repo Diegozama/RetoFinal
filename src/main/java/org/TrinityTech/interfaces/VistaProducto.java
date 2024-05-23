@@ -259,6 +259,6 @@ public class VistaProducto extends JFrame{
     }
 
     public static void main(String[] args) {
-        new VistaProducto();
+        new VistaProducto().setVisible(true);
     }
 }

@@ -94,6 +94,14 @@ public class Producto {
         this.stock = stock;
     }
 
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
     public Proveedor getProveedor() {
         return proveedor;
     }
