@@ -1,6 +1,7 @@
 package org.TrinityTech.interfaces;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,11 +25,14 @@ public class VistaProveedor extends JFrame{
 
         setTitle("Gestionar proveedores");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(700, 400);
         setLocationRelativeTo(null);
+
+        getContentPane().setBackground(Color.GRAY);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
+        panelPrincipal.setBorder(new EmptyBorder(20,20,20,20));
 
         JPanel panelProveedores = new JPanel(new BorderLayout());
 
@@ -115,6 +119,7 @@ public class VistaProveedor extends JFrame{
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(2, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel nombreLabel = new JLabel("Nombre:");
             nombreField = new JTextField(20);
             agregarButton = new JButton("Agregar");
@@ -148,6 +153,7 @@ public class VistaProveedor extends JFrame{
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(3, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel idLabel = new JLabel("ID del Proveedor:");
             idField = new JTextField(20);
             JLabel nombreLabel = new JLabel("Nuevo Nombre:");
@@ -195,6 +201,7 @@ public class VistaProveedor extends JFrame{
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(2, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel idLabel = new JLabel("ID del Proveedor a Eliminar:");
             idField = new JTextField(20);
             eliminarButton = new JButton("Eliminar");

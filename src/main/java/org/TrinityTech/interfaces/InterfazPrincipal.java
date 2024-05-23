@@ -14,12 +14,15 @@ import java.net.URL;
 public class InterfazPrincipal extends JFrame {
 
     public InterfazPrincipal(){
-        setSize(600, 400);
+        setTitle("Market Organizer");
+        setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        getContentPane().setBackground(Color.GRAY);
+
         // Cargar la imagen del ícono
-        URL iconURL = getClass().getClassLoader().getResource("logo/market.jpg");
+        URL iconURL = getClass().getClassLoader().getResource("logos/market2.jpg");
         if (iconURL != null) {
             Image icon = Toolkit.getDefaultToolkit().getImage(iconURL);
             // Establecer el ícono en el JFrame

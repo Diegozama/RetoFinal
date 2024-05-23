@@ -1,6 +1,7 @@
 package org.TrinityTech.interfaces;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,8 +28,12 @@ public class VistaCliente extends JFrame {
         setSize(600, 400);
         setLocationRelativeTo(null);
 
+        getContentPane().setBackground(Color.GRAY);
+
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
+        panelPrincipal.setBorder(new EmptyBorder(20,20,20,20));
+
 
         JPanel panelClientes = new JPanel(new BorderLayout());
 
@@ -117,6 +122,7 @@ public class VistaCliente extends JFrame {
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(3, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel nombreLabel = new JLabel("Nombre:");
             nombreField = new JTextField(20);
             JLabel emailLabel = new JLabel("Email:");
@@ -157,6 +163,7 @@ public class VistaCliente extends JFrame {
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(4, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel idLabel = new JLabel("ID del Cliente:");
             idField = new JTextField(20);
             JLabel nombreLabel = new JLabel("Nuevo Nombre:");
@@ -212,6 +219,7 @@ public class VistaCliente extends JFrame {
             setLocationRelativeTo(null);
 
             JPanel panelFormulario = new JPanel(new GridLayout(2, 2));
+            panelFormulario.setBorder(new EmptyBorder(20,20,20,20));
             JLabel idLabel = new JLabel("ID del Cliente a Eliminar:");
             idField = new JTextField(20);
             eliminarButton = new JButton("Eliminar");
@@ -228,6 +236,6 @@ public class VistaCliente extends JFrame {
     }
 
     public static void main(String[] args) {
-        new VistaCliente();
+        new VistaCliente().setVisible(true);
     }
 }
