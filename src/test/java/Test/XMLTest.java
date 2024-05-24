@@ -1,3 +1,4 @@
+package Test;
 
 import org.TrinityTech.modelos.entidades.Cliente;
 import org.TrinityTech.modelos.entidades.Producto;

@@ -20,7 +20,7 @@ public class Producto {
     @Column(name = "precio") private double precio;
     @Column(name = "stock") private int stock;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_proveedor")
     private Proveedor proveedor;
 
@@ -109,12 +109,11 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "IdProducto=" + idProducto +
+                "idProducto=" + idProducto +
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stock=" + stock +
                 ", proveedor=" + proveedor +
-                ", clientes=" + clientes +
                 '}';
     }
 }

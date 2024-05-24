@@ -21,7 +21,7 @@ public class Cliente {
     @Column(name = "nombre") private String nombre;
     @Column(name = "email") private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "compras",
             joinColumns = @JoinColumn(name = "id_cliente"),
@@ -94,12 +94,5 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "IdCliente=" + idCliente +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+
 }

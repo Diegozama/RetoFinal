@@ -49,24 +49,14 @@ public class ClienteDAO extends GenericDAO {
 
 
     public static void main(String[] args) {
-        //GenericDAO genericDAO = new GenericDAO();
-        //genericDAO.save(new Cliente("Rodrigo", "rodrigo@prueba.com"));
-        //genericDAO.delete(new Cliente(14,"",""));
-        //genericDAO.update(new Cliente(14,"Mario", "mario@gmail.com"));
-        //List<Cliente> lista = genericDAO.findAll(Cliente.class);
-        //ClienteDAO clienteDAO = new ClienteDAO();
-
-        //List<Cliente> lista = clienteDAO.findByNombre("prueba");
-       /* System.out.println(lista);*/
+        /*GenericDAO genericDAO = new GenericDAO();
+        Producto producto = (Producto) genericDAO.findById(Producto.class, 7);
+        Cliente cliente = (Cliente) genericDAO.findById(Cliente.class,3);
+        cliente.addProducto(producto);
+        genericDAO.update(cliente);*/
 
         ClienteDAO clienteDAO = new ClienteDAO();
-
-
-        /*GenericDAO genericDAO = new ClienteDAO();
-        Cliente cliente = (Cliente) genericDAO.findById(Cliente.class, 2);
-
-        ClienteDAO clienteDAO = new ClienteDAO();
-        List<Producto> lista = clienteDAO.findProductosByCliente(cliente);
-        System.out.println(lista);*/
+        List<Cliente> clientes = clienteDAO.findByEmail("diegozama23@gmail.com");
+        System.out.println(clientes);
     }
 }

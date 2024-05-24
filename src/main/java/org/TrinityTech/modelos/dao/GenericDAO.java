@@ -5,11 +5,16 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import org.TrinityTech.modelos.entidades.Cliente;
 import org.TrinityTech.modelos.entidades.Producto;
 import org.TrinityTech.modelos.entidades.Proveedor;
+import org.basex.util.DateTime;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -105,7 +110,48 @@ public class GenericDAO {
 
     }
 
+    public List<Object[]> findAllCompras() {
+        Session session = sessionFactory.openSession();
+        List<Object[]> results = null;
 
+        try {
+            // Consulta SQL nativa
+            NativeQuery<Object[]> query = session.createNativeQuery(
+                    "SELECT id_cliente, id_producto, fecha_compra, cantidad FROM compras");
+            results = query.list();
+        } finally {
+            session.close();
+        }
 
+        return results;
+    }
 
+    public void saveCompras(Cliente cliente, Producto producto, int cantidad ){
+        Session session = sessionFactory.openSession();
+        try {
+            // Consulta SQL nativa
+            NativeQuery<Object[]> query = session.createNativeQuery(
+                    "INSERT INTO `compras` (`id_cliente`, `id_producto`, `fecha_compra`, `cantidad`)" +
+                        " VALUES ('"+cliente.getIdCliente()+"', '"+producto.getIdProducto()+"', current_timestamp(), '89');");
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        GenericDAO genericDAO = new GenericDAO();
+        /*List<Object[]> compras = genericDAO.findAllCompras();
+        for (Object[] row : compras){
+            Cliente cliente = (Cliente) genericDAO.findById(Cliente.class,(int) row[0]);
+            Producto producto = (Producto) genericDAO.findById(Producto.class,(int) row[1]);
+            Timestamp fecha = (Timestamp) row[2];
+            int cantidad = (int) row[3];
+            System.out.println(cliente.getNombre() + " " + producto.getNombre() + " " + fecha + " " + cantidad);
+         }*/
+
+        /*Cliente cliente = (Cliente) genericDAO.findById(Cliente.class, 7);
+        Producto producto = (Producto) genericDAO.findById(Producto.class, 3);
+        genericDAO.saveCompras(cliente,producto,12);*/
+     }
 }
