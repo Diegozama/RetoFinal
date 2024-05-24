@@ -19,7 +19,7 @@ public class Proveedor {
     @Column(name = "id_proveedor") private int idProveedor;
     @Column(name = "nombre") private String nombre;
 
-    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "proveedor")
     private List<Producto> productos;
 
     // Construtores

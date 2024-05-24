@@ -97,12 +97,5 @@ public class ProductoDAO extends GenericDAO {
 
     public static void main(String[] args) {
 
-        ProductoDAO productoDAO = new ProductoDAO();
-
-        //List<Producto> list = productoDAO.getProductosDeCliente(new Cliente(1).getIdCliente());
-        List<Producto> list = productoDAO.findProductosByCliente(new Cliente(1));
-        //List<Producto> list = productoDAO.findByProveedor(new Proveedor(1));
-
-        System.out.println(list);
     }
 }
