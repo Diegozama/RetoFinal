@@ -7,10 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Interfaz de clientes
+ */
 public class VistaCliente extends JFrame {
 
     private JTable clientesTable;
-    private DefaultTableModel clientesTableModel;
     private JButton agregarButton;
     private JButton refreshButton;
     private JButton modificarButton;
@@ -34,6 +36,17 @@ public class VistaCliente extends JFrame {
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(new EmptyBorder(20,20,20,20));
 
+        /*JPanel panelSuperior = new JPanel(new FlowLayout());
+        JButton todo = new JButton("Mostrar todo");
+        JLabel texto = new JLabel("Filtra por");
+        String opciones[] = {"Id","Nombre", "Email"};
+        JComboBox<String> comboBox = new JComboBox<>(opciones);
+        JButton filtrar = new JButton("Filtra");*/
+
+        /*panelSuperior.add(todo);
+        panelSuperior.add(texto);
+        panelSuperior.add(comboBox);
+        panelSuperior.add(filtrar);*/
 
         JPanel panelClientes = new JPanel(new BorderLayout());
 
@@ -43,8 +56,8 @@ public class VistaCliente extends JFrame {
         refreshButton = new JButton("Actualizar clientes");
         exportarButton = new JButton("Exportar a XML"); // Nuevo botón
 
-        clientesTable = new JTable(clientesTableModel);
-
+        clientesTable = new JTable();
+        /*clientesTable.setAutoCreateRowSorter(true);*/
 
         JScrollPane scrollPane = new JScrollPane(clientesTable);
         panelClientes.add(scrollPane, BorderLayout.CENTER);
@@ -55,6 +68,7 @@ public class VistaCliente extends JFrame {
         buttonPanel.add(exportarButton);
         panelClientes.add(buttonPanel, BorderLayout.SOUTH);
 
+        /*panelPrincipal.add(panelSuperior);*/
         panelPrincipal.add(panelClientes);
 
         add(panelPrincipal);
@@ -96,9 +110,6 @@ public class VistaCliente extends JFrame {
         return clientesTable;
     }
 
-    public DefaultTableModel getClientesTableModel() {
-        return clientesTableModel;
-    }
 
     public AgregarClienteDialog getAgregarClienteDialog() {
         return agregarClienteDialog;
@@ -235,7 +246,7 @@ public class VistaCliente extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new VistaCliente().setVisible(true);
-    }
+    }*/
 }

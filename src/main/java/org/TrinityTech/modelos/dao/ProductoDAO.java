@@ -12,13 +12,20 @@ import org.hibernate.Session;
 
 import java.util.List;
 
+/**
+ * DAO de especifico de productos
+ */
 public class ProductoDAO extends GenericDAO {
 
     public ProductoDAO(){
         super();
     }
 
-
+    /**
+     * Método para buscar los productos por su monbre
+     * @param nombre parámetro de busqueda
+     * @return
+     */
     public List<Producto> findByNombre(String nombre) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -33,6 +40,11 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
+    /**
+     * Método para buscar un producto por el precio
+     * @param precio parámetro de busqueda
+     * @return
+     */
     public List<Producto> findByPrecio(double precio) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -47,6 +59,11 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
+    /**
+     * Método para buscar un producto por su stock
+     * @param stock parámetro de busqueda
+     * @return
+     */
     public List<Producto> findByStock(int stock) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -61,6 +78,11 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
+    /**
+     * Método para buscar un producto por su proveedor
+     * @param proveedor parámetro de busqueda
+     * @return
+     */
     public List<Producto> findByProveedor(Proveedor proveedor) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -75,6 +97,11 @@ public class ProductoDAO extends GenericDAO {
         return productos;
     }
 
+    /**
+     * Método para buscar los productos por su cliente
+     * @param cliente parámetro de busqueda
+     * @return
+     */
     public List<Producto> findProductosByCliente(Cliente cliente) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -95,7 +122,7 @@ public class ProductoDAO extends GenericDAO {
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
-    }
+    }*/
 }

@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Controlador del maoldeo y la interfaz de proveedor
+ */
+
 public class ProveedorControlador {
 
     private VistaProveedor vistaProveedor;
@@ -39,6 +43,7 @@ public class ProveedorControlador {
                 genericDAO.save(new Proveedor(nombre));
 
                 mostrarProveedores();
+                JOptionPane.showMessageDialog(null, "Se guardó el proveedor correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -53,6 +58,8 @@ public class ProveedorControlador {
                 genericDAO.update(new Proveedor(id, nombre));
 
                 mostrarProveedores();
+
+                JOptionPane.showMessageDialog(null, "Se modifico el proveedor con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -62,14 +69,24 @@ public class ProveedorControlador {
             public void actionPerformed(ActionEvent e) {
                 int id = Integer.parseInt(vistaProveedor.getEliminarProveedorDialog().getIdField().getText());
 
-                genericDAO.delete(new Proveedor(id));
+                String mensaje = "¿Estas seguro de eliminar el proveedor con id "+id+"?";
+                String opciones[] = {"Confirmar", "Cancelar"};
+                int confirmacion = JOptionPane.showOptionDialog(null,mensaje, "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,opciones,opciones[1] );
 
-                mostrarProveedores();
+                if (confirmacion == 0){
+                    genericDAO.delete(new Proveedor(id));
+                    mostrarProveedores();
+                    JOptionPane.showMessageDialog(null, "Se eliminó el proveedor con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                }
+
             }
         });
 
     }
 
+    /**
+     * Método que permite elegir donde guardar el XML de proveedores
+     */
     public void importarXmlCliente(){
 
         Boolean correcto = false;
@@ -111,6 +128,10 @@ public class ProveedorControlador {
     }
 
     // Mostrar los clientes
+
+    /**
+     * Método que actualiza los proveedores
+     */
     public void mostrarProveedores(){
 
         // Obtener la lista de proveedores desde el DAO
@@ -129,10 +150,10 @@ public class ProveedorControlador {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         VistaProveedor v = new VistaProveedor();
         new ProveedorControlador(v);
 
         v.setVisible(true);
-    }
+    }*/
 }

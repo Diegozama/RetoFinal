@@ -42,8 +42,10 @@ public class ClienteControlador {
                 String email = vistaCliente.getAgregarClienteDialog().getEmailField().getText();
 
                 genericDAO.save(new Cliente(nombre, email));
-
                 mostrarClientes();
+
+                JOptionPane.showMessageDialog(null, "Se guardó el cliente correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+
             }
         });
 
@@ -58,6 +60,8 @@ public class ClienteControlador {
                 genericDAO.update(new Cliente(id, nombre, email));
 
                 mostrarClientes();
+
+                JOptionPane.showMessageDialog(null, "Se modifico el cliente con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -67,10 +71,16 @@ public class ClienteControlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = Integer.parseInt(vistaCliente.getEliminarClienteDialog().getIdField().getText());
+                String mensaje = "¿Estas seguro de eliminar el cliente con id "+id+"?";
+                String opciones[] = {"Confirmar", "Cancelar"};
+                int confirmacion = JOptionPane.showOptionDialog(null,mensaje, "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,opciones,opciones[1] );
 
-                genericDAO.delete(new Cliente(id));
+                if (confirmacion == 0){
+                    genericDAO.delete(new Cliente(id));
+                    mostrarClientes();
+                    JOptionPane.showMessageDialog(null, "Se eliminó el cliente con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                }
 
-                mostrarClientes();
             }
         });
 
@@ -86,7 +96,9 @@ public class ClienteControlador {
 
     }
 
-
+    /**
+     * Método que permite elegir donde guardar el XML de clientes
+     */
     public void importarXmlCliente(){
 
         Boolean correcto = false;
@@ -128,6 +140,9 @@ public class ClienteControlador {
     }
 
     // Mostrar los clientes
+    /**
+     * Método que actualiza los clientes
+     */
     public void mostrarClientes(){
 
         // Obtener la lista de clientes desde el DAO
@@ -147,11 +162,11 @@ public class ClienteControlador {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         VistaCliente v = new VistaCliente();
 
         new ClienteControlador(v);
 
         v.setVisible(true);
-    }
+    }*/
 }
