@@ -11,6 +11,9 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * Interfaz principal de la aplicación
+ */
 public class InterfazPrincipal extends JFrame {
 
     public InterfazPrincipal(){

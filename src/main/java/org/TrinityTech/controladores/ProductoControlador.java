@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
+
+/**
+ * Controlador del maoldeo y la interfaz de producto
+ */
 public class ProductoControlador {
 
     private VistaProducto vistaProducto;
@@ -49,6 +53,8 @@ public class ProductoControlador {
 
                 actualizarJcomoBox();
                 mostrarProductos();
+
+                JOptionPane.showMessageDialog(null, "Se guardó el producto correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -69,6 +75,7 @@ public class ProductoControlador {
                 genericDAO.update(producto);
 
                 mostrarProductos();
+                JOptionPane.showMessageDialog(null, "Se modifico el producto con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -77,10 +84,17 @@ public class ProductoControlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = Integer.parseInt(vistaProducto.getEliminarProductoDialog().getIdField().getText());
+                String mensaje = "¿Estas seguro de eliminar el producto con id "+id+"?";
+                String opciones[] = {"Confirmar", "Cancelar"};
+                int confirmacion = JOptionPane.showOptionDialog(null,mensaje, "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,opciones,opciones[1] );
 
-                genericDAO.delete(new Producto(id));
+                if (confirmacion == 0){
+                    genericDAO.delete(new Producto(id));
+                    mostrarProductos();
+                    JOptionPane.showMessageDialog(null, "Se eliminó el producto con id "+ id+" correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                }
 
-                mostrarProductos();
+
             }
         });
 
@@ -94,6 +108,9 @@ public class ProductoControlador {
 
     }
 
+    /**
+     * Método que permite elegir donde guardar el XML de productos
+     */
     public void importarXmlProductos(){
 
         Boolean correcto = false;
@@ -135,6 +152,9 @@ public class ProductoControlador {
     }
 
     // Mostrar los productos
+    /**
+     * Método que actualiza los productos
+     */
     public void mostrarProductos(){
 
         // Obtener la lista de productos desde el DAO
@@ -156,6 +176,10 @@ public class ProductoControlador {
 
     }
 
+    /**
+     * Método que actualiza la lista de proveedores para
+     * agregar y modificar productos
+     */
     public void actualizarJcomoBox(){
         JComboBox<Proveedor> jComboBoxAgregar = vistaProducto.getAgregarProductoDialog().getProveedorJComboBox();
         JComboBox<Proveedor> jComboBoxModificar = vistaProducto.getModificarProductoDialog().getProveedorJComboBox();
@@ -165,10 +189,10 @@ public class ProductoControlador {
         jComboBoxModificar.setModel(defaultComboBoxModel);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         VistaProducto v = new VistaProducto();
         new ProductoControlador(v);
 
         v.setVisible(true);
-    }
+    }*/
 }

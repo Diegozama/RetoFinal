@@ -139,19 +139,19 @@ public class GenericDAO {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         GenericDAO genericDAO = new GenericDAO();
-        /*List<Object[]> compras = genericDAO.findAllCompras();
+        *//*List<Object[]> compras = genericDAO.findAllCompras();
         for (Object[] row : compras){
             Cliente cliente = (Cliente) genericDAO.findById(Cliente.class,(int) row[0]);
             Producto producto = (Producto) genericDAO.findById(Producto.class,(int) row[1]);
             Timestamp fecha = (Timestamp) row[2];
             int cantidad = (int) row[3];
             System.out.println(cliente.getNombre() + " " + producto.getNombre() + " " + fecha + " " + cantidad);
-         }*/
+         }*//*
 
-        /*Cliente cliente = (Cliente) genericDAO.findById(Cliente.class, 7);
+        *//*Cliente cliente = (Cliente) genericDAO.findById(Cliente.class, 7);
         Producto producto = (Producto) genericDAO.findById(Producto.class, 3);
-        genericDAO.saveCompras(cliente,producto,12);*/
-     }
+        genericDAO.saveCompras(cliente,producto,12);*//*
+     }*/
 }

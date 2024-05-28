@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Interfaz de productos
+ */
 public class VistaProducto extends JFrame{
 
     private JTable productoTable;
@@ -263,7 +266,7 @@ public class VistaProducto extends JFrame{
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new VistaProducto().setVisible(true);
-    }
+    }*/
 }

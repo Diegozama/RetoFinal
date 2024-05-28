@@ -11,6 +11,9 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO de especifico de clientes
+ */
 public class ClienteDAO extends GenericDAO {
 
     public ClienteDAO(){
@@ -48,15 +51,15 @@ public class ClienteDAO extends GenericDAO {
 
 
 
-    public static void main(String[] args) {
-        /*GenericDAO genericDAO = new GenericDAO();
+    /*public static void main(String[] args) {
+        *//*GenericDAO genericDAO = new GenericDAO();
         Producto producto = (Producto) genericDAO.findById(Producto.class, 7);
         Cliente cliente = (Cliente) genericDAO.findById(Cliente.class,3);
         cliente.addProducto(producto);
-        genericDAO.update(cliente);*/
+        genericDAO.update(cliente);*//*
 
         ClienteDAO clienteDAO = new ClienteDAO();
         List<Cliente> clientes = clienteDAO.findByEmail("diegozama23@gmail.com");
         System.out.println(clientes);
-    }
+    }*/
 }

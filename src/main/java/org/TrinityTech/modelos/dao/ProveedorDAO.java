@@ -9,12 +9,20 @@ import org.hibernate.Session;
 
 import java.util.List;
 
+/**
+ * DAO de especifico de proveedores
+ */
 public class ProveedorDAO extends GenericDAO{
 
     public ProveedorDAO(){
         super();
     }
 
+    /**
+     * Método para buscar los proveedores por su nombre
+     * @param nombre parámetros de busqueda
+     * @return
+     */
     public List<Proveedor> findByNombre(String nombre) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -31,6 +39,6 @@ public class ProveedorDAO extends GenericDAO{
 
 
 
-    public static void main(String[] args) {
-    }
+    /*public static void main(String[] args) {
+    }*/
 }
